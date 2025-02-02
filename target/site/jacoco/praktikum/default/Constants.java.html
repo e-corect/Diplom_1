@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ru"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Constants.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">jacoco.exec</a> &gt; <a href="index.source.html" class="el_package">default</a> &gt; <span class="el_source">Constants.java</span></div><h1>Constants.java</h1><pre class="source lang-java linenums">import java.util.Random;
+
+<span class="nc" id="L3">public class Constants {</span>
+
+    /// / Bun types
+    public static final String BLACK_BUN = &quot;black bun&quot;;
+    public static final String RYE_BUN = &quot;ржаная булочка&quot;;
+    public static final String WHITE_BUN = &quot;white bun&quot;;
+    public static final String RED_BUN = &quot;red bun&quot;;
+    /// / Sauces
+    public static final String HOT_SAUCE = &quot;hot sauce&quot;;
+    public static final String SOUR_CREAM = &quot;sour cream&quot;;
+    public static final String CHILI_SAUCE = &quot;chili sauce&quot;;
+
+    /// / Filling
+    public static final String CUTLET = &quot;cutlet&quot;;
+    public static final String DINOSAUR = &quot;dinosaur&quot;;
+    public static final String SAUSAGE = &quot;sausage&quot;;
+
+    public static final float DELTA = 0f;
+
+<span class="fc" id="L22">    public static String[] Ingredients = {BLACK_BUN, RYE_BUN, WHITE_BUN,</span>
+                                          RED_BUN, HOT_SAUCE, SOUR_CREAM,
+                                          CHILI_SAUCE, CUTLET, DINOSAUR, SAUSAGE};
+    public static String getIngredient(){
+<span class="fc" id="L26">        Random random = new Random();</span>
+<span class="fc" id="L27">        return Ingredients[random.nextInt(Ingredients.length - 1)];</span>
+    }
+
+    public static final String ASSERTION_FAILED_MSG = &quot;Результат теста не соответствует ожидаемому&quot;;
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

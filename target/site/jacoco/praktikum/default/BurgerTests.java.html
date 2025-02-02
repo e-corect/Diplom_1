@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ru"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>BurgerTests.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">jacoco.exec</a> &gt; <a href="index.source.html" class="el_package">default</a> &gt; <span class="el_source">BurgerTests.java</span></div><h1>BurgerTests.java</h1><pre class="source lang-java linenums">import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
+import org.mockito.junit.MockitoJUnitRunner;
+import praktikum.Bun;
+import praktikum.Burger;
+import praktikum.Ingredient;
+import praktikum.IngredientType;
+
+@RunWith(MockitoJUnitRunner.class)
+<span class="fc" id="L15">public class BurgerTests {</span>
+
+    @Mock
+    private Bun bun;
+
+    private Burger burger;
+    @Mock
+    private Ingredient ingredient1;
+    @Mock
+    private Ingredient ingredient2;
+
+    @Before
+    public void prepare(){
+<span class="fc" id="L28">        MockitoAnnotations.openMocks(this);</span>
+
+<span class="fc" id="L30">        burger = new Burger();</span>
+<span class="fc" id="L31">        burger.setBuns(bun);</span>
+<span class="fc" id="L32">        burger.addIngredient(ingredient1);</span>
+<span class="fc" id="L33">        burger.addIngredient(ingredient2);</span>
+<span class="fc" id="L34">    }</span>
+
+    @Test
+    public void setBunsTest(){
+<span class="fc" id="L38">        Assert.assertEquals(Constants.ASSERTION_FAILED_MSG, burger.bun, bun);</span>
+<span class="fc" id="L39">    }</span>
+
+    @Test
+    public void addIngredientTest(){
+<span class="fc" id="L43">        Assert.assertEquals(Constants.ASSERTION_FAILED_MSG, ingredient1, burger.ingredients.get(0));</span>
+<span class="fc" id="L44">    }</span>
+
+    @Test
+    public void removeIngredientTest(){
+<span class="fc" id="L48">        burger.removeIngredient(1);</span>
+<span class="fc" id="L49">        Assert.assertEquals(Constants.ASSERTION_FAILED_MSG, ingredient1, burger.ingredients.get(0));</span>
+<span class="fc" id="L50">    }</span>
+
+    @Test
+    public void moveIngredientTest(){
+<span class="fc" id="L54">        burger.moveIngredient(0,1);</span>
+<span class="fc" id="L55">        Assert.assertEquals(Constants.ASSERTION_FAILED_MSG, ingredient1, burger.ingredients.get(1));</span>
+<span class="fc" id="L56">    }</span>
+
+    @Test
+    public void getPriceTest(){
+<span class="fc" id="L60">        Mockito.when(burger.getPrice()).thenReturn((float)555);</span>
+<span class="fc" id="L61">        Assert.assertEquals(Constants.ASSERTION_FAILED_MSG, 555, burger.getPrice(), Constants.DELTA);</span>
+<span class="fc" id="L62">    }</span>
+
+    @Test
+    public void getReceiptTest(){
+<span class="fc" id="L66">        Mockito.when(bun.getName()).thenReturn(Constants.WHITE_BUN);</span>
+<span class="fc" id="L67">        Mockito.when(burger.getPrice()).thenReturn(200f);</span>
+<span class="fc" id="L68">        Mockito.when(ingredient1.getType()).thenReturn(IngredientType.SAUCE);</span>
+<span class="fc" id="L69">        Mockito.when(ingredient1.getName()).thenReturn(Constants.HOT_SAUCE);</span>
+<span class="fc" id="L70">        Mockito.when(ingredient1.getPrice()).thenReturn(100f);</span>
+<span class="fc" id="L71">        Mockito.when(ingredient2.getType()).thenReturn(IngredientType.FILLING);</span>
+<span class="fc" id="L72">        Mockito.when(ingredient2.getName()).thenReturn(Constants.DINOSAUR);</span>
+<span class="fc" id="L73">        Mockito.when(ingredient2.getPrice()).thenReturn(200f);</span>
+<span class="fc" id="L74">        StringBuilder receipt = new StringBuilder();</span>
+<span class="fc" id="L75">        receipt.append(String.format(&quot;(==== %s ====)%n&quot;, bun.getName()));</span>
+<span class="fc" id="L76">        receipt.append(String.format(&quot;= %s %s =%n&quot;, ingredient1.getType().toString().toLowerCase(), ingredient1.getName()));</span>
+<span class="fc" id="L77">        receipt.append(String.format(&quot;= %s %s =%n&quot;, ingredient2.getType().toString().toLowerCase(), ingredient2.getName()));</span>
+<span class="fc" id="L78">        receipt.append(String.format(&quot;(==== %s ====)%n&quot;, bun.getName()));</span>
+<span class="fc" id="L79">        receipt.append(String.format(&quot;%nPrice: %f%n&quot;, burger.getPrice()));</span>
+<span class="fc" id="L80">        Assert.assertEquals(Constants.ASSERTION_FAILED_MSG, true, receipt.toString().equals(burger.getReceipt()));</span>
+<span class="fc" id="L81">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>
