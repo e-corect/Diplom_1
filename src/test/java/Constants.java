@@ -24,7 +24,7 @@ public class Constants {
                                           CHILI_SAUCE, CUTLET, DINOSAUR, SAUSAGE};
     public static String getIngredient(){
         Random random = new Random();
-        return Ingredients[random.nextInt(Ingredients.length - 1)];
+        return Ingredients[random.nextInt(Ingredients.length)];
     }
 
     public static final String ASSERTION_FAILED_MSG = "Результат теста не соответствует ожидаемому";
